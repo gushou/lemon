@@ -1,0 +1,17 @@
+<configuration name="callcenter.conf" description="CallCenter">
+  <settings>
+    <param name="odbc-dsn" value="pgsql://hostaddr=127.0.0.1 dbname=freeswitch user=postgres password='postgres' options='-c client_min_messages=NOTICE'"/>
+  </settings>
+
+  <queues>
+    <X-PRE-PROCESS cmd="include" data="../queues/*.xml"/>
+  </queues>
+
+  <agents>
+    <X-PRE-PROCESS cmd="include" data="../agents/*.xml"/>
+  </agents>
+
+  <tiers>
+    <X-PRE-PROCESS cmd="include" data="../tiers/*.xml"/>
+  </tiers>
+</configuration> 

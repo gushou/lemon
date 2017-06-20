@@ -1,0 +1,24 @@
+[Unit]
+Description=FreeSWITCH
+After=syslog.target network.target postgresql.service
+
+[Service]
+User=apache
+Group=apache
+LimitCORE=infinity
+LimitNOFILE=100000
+LimitNPROC=60000
+LimitSTACK=250000
+LimitRTPRIO=infinity
+LimitRTTIME=7000000
+IOSchedulingClass=realtime
+IOSchedulingPriority=2
+CPUSchedulingPolicy=rr
+CPUSchedulingPriority=89
+WorkingDirectory=/var/freeswitch
+ExecStart=/usr/local/freeswitch/bin/freeswitch -nc -nf -nonat
+ExecStop=/usr/local/freeswitch/bin/freeswitch -stop
+ExecReload=/usr/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
